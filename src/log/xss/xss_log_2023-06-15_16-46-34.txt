@@ -1,0 +1,2 @@
+[16:46:34] [INFO] Checking connection to: http://localhost:8080/pikachu/vul/xss/xss.php
+[16:46:34] [INFO] Connection estabilished 200
