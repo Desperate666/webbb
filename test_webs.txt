@@ -1,0 +1,69 @@
+xss反射
+get:
+http://localhost:8080/pikachu/vul/xss/xss_reflected_get.php
+
+python xsscon.py --single "http://localhost:8080/pikachu/vul/xss/xss_reflected_get.php"
+
+post:
+
+python xsscon.py --single "http://localhost:8080/pikachu/vul/xss/xsspost/post_login.php?username=admin&password=123456&submit=submit" --method 1
+
+python xsstrike.py -u "http://localhost:8080/pikachu/vul/xss/xsspost/post_login.php" --data "username=admin&password=123456"
+
+
+xss的dom
+
+最好用xsstrike.py
+xsscon会检测出来但不会判断是dom
+
+http://localhost:8080/dvwa/vulnerabilities/xss_d/?default=Spanish
+
+python xsstrike.py -u "http://localhost:8080/dvwa/vulnerabilities/xss_d/?default=Spanish"
+python xsscon.py --single "http://localhost:8080/dvwa/vulnerabilities/xss_d/?default=Spanish"
+
+
+我新写了一个xsstest
+
+两个功能合并了：
+python xsstest.py --single "http://localhost:8080/dvwa/vulnerabilities/xss_d/?default=Spanish"
+
+可以直接修改元素的值，并且嵌入网页里
+---------------------------------------------------------------------------------------
+http://localhost:8080/pikachu/vul/xss/xss_dom.php
+http://localhost:8080/pikachu/vul/xss/xss_dom_x.php
+
+python xsstrike.py -u "http://localhost:8080/pikachu/vul/xss/xss_dom.php"
+python xsstrike.py -u "http://localhost:8080/pikachu/vul/xss/xss_dom_x.php"
+
+xss的存储
+http://localhost:8080/dvwa/vulnerabilities/xss_s/
+
+python xsstrike.py -u "http://localhost:8080/dvwa/vulnerabilities/xss_s/"
+
+python xsscon.py --single "http://localhost:8080/dvwa/vulnerabilities/xss_s/"
+----------------------------------------------------
+http://localhost:8080/pikachu/vul/xss/xss_stored.php
+
+python xsscon.py --single "http://localhost:8080/pikachu/vul/xss/xss_stored.php"
+
+
+xss盲打
+http://localhost:8080/pikachu/vul/xss/xssblind/xss_blind.php
+
+python xsscon.py --single "http://localhost:8080/pikachu/vul/xss/xssblind/xss_blind.php"
+
+
+带参输入：：
+
+xss的过滤：
+
+http://localhost:8080/pikachu/vul/xss/xss_01.php?message=1111111&submit=submit
+
+python xsscon.py --single "http://localhost:8080/pikachu/vul/xss/xss_01.php?message=1111111&submit=submit"
+
+xss的js输出：
+
+http://localhost:8080/pikachu/vul/xss/xss_04.php?message=kobe&submit=submit
+
+python xsscon.py --single "http://localhost:8080/pikachu/vul/xss/xss_04.php?message=kobe&submit=submit"
+// xsstrike的可以但是它会放入大量payload
